@@ -101,12 +101,27 @@ const loginUsuario = async (req, res = response) => {
 
 
 // * CONTROLADOR RENOVAR TOKEN
-const renovarToken = (req, res = response) => {
+const renovarToken = async (req, res = response) => {
 
-    res.json({
-        ok: true,
-        msg: 'Renovar token'
-    })
+    try {
+
+        const { uid, name } = req
+
+        // Generar un nuevo JWT
+        const token = await generarJWT(uid, name)
+    
+        res.json({
+            ok: true,
+            token
+        })
+
+    } catch (error) {
+        console.log(error)
+        res.status(400).json({
+            ok: false,
+            msg: 'No se pudo revalidar el JWT'
+        })
+    }
 
 }
 
