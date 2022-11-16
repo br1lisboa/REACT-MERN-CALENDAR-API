@@ -1,4 +1,5 @@
 const express = require('express')
+const cors = require('cors')
 const { dbConnection } = require('./databse/config')
 require('dotenv').config()
 
@@ -9,6 +10,8 @@ const app = express()
 //* CONEXION BASE DE DATOS
 dbConnection()
 
+//* CORS
+app.use(cors())
 
 //* DIRECTORIO PUBLICO
 app.use(express.static('public'))
@@ -20,6 +23,8 @@ app.use(express.json())
 
 //* RUTAS
 app.use('/api/auth', require('./routes/auth'))
+
+
 // TODO: CRUD: Eventos 
 
 
