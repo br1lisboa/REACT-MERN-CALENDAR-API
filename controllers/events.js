@@ -1,5 +1,7 @@
 const { response, request } = require('express')
 
+
+//* OBTENER EVENTOS
 const obtenerEventos = (req, res = response) => {
 
     res.json({
@@ -9,6 +11,8 @@ const obtenerEventos = (req, res = response) => {
 
 }
 
+
+//* CREAR EVENTO
 const crearEvento = (req = request, res = response) => {
 
     const body = req.body
@@ -21,6 +25,7 @@ const crearEvento = (req = request, res = response) => {
 
 }
 
+//* ACTUALIZAR EVENTO
 const modificarEventos = (req, res = response) => {
 
     const body = req.body
@@ -35,6 +40,7 @@ const modificarEventos = (req, res = response) => {
 
 }
 
+//* ELIMINAR EVENTO
 const eliminarEvento = (req = request, res = response) => {
 
     const { id } = req.params
