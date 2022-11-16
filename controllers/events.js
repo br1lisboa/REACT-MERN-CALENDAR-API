@@ -17,9 +17,11 @@ const obtenerEventos = (req, res = response) => {
 const crearEvento = async (req = request, res = response) => {
 
     const evento = new Evento(req.body)
+    console.log(evento)
 
     try {
 
+        evento.user = req.uid
         const eventoGuardado = await evento.save()
 
         res.status(201).json({
