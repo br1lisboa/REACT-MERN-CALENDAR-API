@@ -6,7 +6,7 @@ const UsuarioSchema = Schema({
 
     name: {
         type: String,
-        require: true
+        required: true
     },
 
     email: {
@@ -17,7 +17,7 @@ const UsuarioSchema = Schema({
 
     password: {
         type: String,
-        require: true
+        required: true
     }
 
 })

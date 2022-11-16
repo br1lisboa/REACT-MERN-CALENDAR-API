@@ -1,4 +1,5 @@
 const { response, request } = require('express')
+const Evento = require('../models/Evento')
 
 
 //* OBTENER EVENTOS
@@ -13,15 +14,28 @@ const obtenerEventos = (req, res = response) => {
 
 
 //* CREAR EVENTO
-const crearEvento = (req = request, res = response) => {
+const crearEvento = async (req = request, res = response) => {
 
-    const body = req.body
+    const evento = new Evento(req.body)
 
-    res.json({
-        ok: true,
-        msg: 'Evento creado',
-        body
-    })
+    try {
+
+        const eventoGuardado = await evento.save()
+
+        res.status(201).json({
+            ok: true,
+            msg: 'Evento creado',
+            evento: eventoGuardado
+        })
+
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({
+            ok: false,
+            msg: "Error al grabar en la base de datos."
+        })
+    }
+
 
 }
 
